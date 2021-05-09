@@ -1,37 +1,77 @@
-import logo from './logo.svg';
-import './App.css';
-import { Box, makeStyles } from '@material-ui/core';
+import "./App.css";
+import { Box, Button, Input, makeStyles } from "@material-ui/core";
+import axios from 'axios';
+import { ContactSupportOutlined, Label } from "@material-ui/icons";
+import { useState } from "react";
 
 let useStyle = makeStyles({
   root: {
-    width : "100vw",
+    width: "100vw",
     minHeight: "100vh",
-    background: "#aaaaaa"
+    background: "#aaaaaa",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
   },
-  headerImg : {
-marginTop: "20px",
-width: "600px",
-height: "150px",
-borderRadius: "15px",
-background:"#ffffff"
+  headerImg: {
+    marginTop: "50px",
+    width: "600px",
+    height: "150px",
+    borderRadius: "15px",
   },
-  inputBox : {
+  inputBox: {
     marginTop: "20px",
     width: "600px",
     height: "150px",
     borderRadius: "15px",
-    background:"#ffffff"
-      }
-})
+    background: "#ffffff",
+  },
+  inputFeild: {
+    marginTop: "75px",
+    width: "500px",
+    height: "10px",
+    borderRadius: "15px",
+    background: "#ffffff",
+  },
+  btn: {
+    marginTop: "20px",
+    width: "200px",
+    height: "30px",
+    borderRadius: "15px",
+    background: "#ffffff",
+    justifyContent: "center"
+  },
+});
 function App() {
+
+  const [input,setInput] = useState("")
+  const formValue = (e) => {
+setInput(e.target.value);
+  }
+  let submitForm = function(){
+let data =  input;
+// let data = {
+//   name: "anuj",
+//   age: 44
+// }
+    axios.post("http://localhost:5000/submit/",data).then((response) => {
+      console.log(response);
+    }).catch((error) =>{
+      console.log(error);
+    })
+  }
+
   let classes = useStyle();
   return (
-<Box className={classes.root}>
-<Box className= {classes.headerImg}></Box>
-<Box className= {classes.inputBox}></Box>
-<Box className= {classes.inputBox}></Box>
-<Box className= {classes.inputBox}></Box>
-</Box>
+    <Box className={classes.root}>
+      <img className={classes.headerImg} src="/assests/bg.jpg" />
+
+      <Box className={classes.inputBox}><Label>Enter  name</Label><Input onChange={formValue} className={classes.inputFeild}/></Box>
+      
+      <Box className={classes.inputBox}><Label>Enter  name</Label><Input onChange={formValue} className={classes.inputFeild}/></Box>
+      <Box className={classes.inputBox}><Label>Enter  name</Label><Input onChange={formValue} className={classes.inputFeild}/></Box>
+      <Button className={classes.btn} onClick={submitForm}>Submit</Button>
+    </Box>
   );
 }
 
