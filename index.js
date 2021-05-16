@@ -8,7 +8,7 @@ app.use(express.json());
 let PORT = 5000;
 
 let handleGet = function(req, res){
-    //console.log(req)
+    //console.log(req)  
     res.send("Welcome to the new world")
 }
 let formSubmission = function(req, res){
