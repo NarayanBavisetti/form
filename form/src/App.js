@@ -48,8 +48,10 @@ function App() {
   const formValue = (e) => {
 setInput(e.target.value);
   }
+
   let submitForm = function(){
-let data =  input;
+ let data =  input({});
+console.log(data);
 // let data = {
 //   name: "anuj",
 //   age: 44
@@ -66,10 +68,10 @@ let data =  input;
     <Box className={classes.root}>
       <img className={classes.headerImg} src="/assests/bg.jpg" />
 
-      <Box className={classes.inputBox}><Label>Enter  name</Label><Input onChange={formValue} className={classes.inputFeild}/></Box>
+      <Box className={classes.inputBox}><Label>Enter  name</Label><Input name="lastname" onChange={formValue} className={classes.inputFeild}/></Box>
       
-      <Box className={classes.inputBox}><Label>Enter  name</Label><Input onChange={formValue} className={classes.inputFeild}/></Box>
-      <Box className={classes.inputBox}><Label>Enter  name</Label><Input onChange={formValue} className={classes.inputFeild}/></Box>
+      <Box className={classes.inputBox}><Label>Enter  name</Label><Input name="fullname" onChange={formValue} className={classes.inputFeild}/></Box>
+      <Box className={classes.inputBox}><Label>Enter  name</Label><Input name="conatct" onChange={formValue} className={classes.inputFeild}/></Box>
       <Button className={classes.btn} onClick={submitForm}>Submit</Button>
     </Box>
   );
